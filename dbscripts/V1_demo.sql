@@ -1,1 +1,1 @@
-
+select current_timestamp;
