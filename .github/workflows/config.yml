@@ -14,12 +14,12 @@ on:
       target_env:
         description: 'Environment to deploy to'
         required: true
-        default: 'dev'
+        default: 'DEV'
         type: choice
         options:
-          - dev
-          - qa
-          - prod
+          - DEV
+          - QA
+          - PROD
 
 jobs:
   deploy-snowflake-changes-job:
