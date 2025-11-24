@@ -1,4 +1,5 @@
 -- Initial setup of roles, Database, Schemas and necessary privileges
+
 USE ROLE SYSADMIN;
 
 CREATE DATABASE IF NOT EXISTS DEV_GW_CDA;
