@@ -1,0 +1,89 @@
+version: 2
+
+models:
+  - name: stg_account
+    columns:
+      - name: account_id
+        tests:
+          - not_null
+          - unique
+      - name: state_code
+        tests:
+          - not_null
+
+  - name: stg_policy
+    columns:
+      - name: policy_id
+        tests:
+          - not_null
+          - unique
+      - name: policy_status
+        tests:
+          - accepted_values:
+              values:
+                - "ACTIVE"
+                - "CANCELLED"
+                - "EXPIRED"
+
+  - name: stg_claim_payment
+    columns:
+      - name: payment_id
+        tests:
+          - not_null
+          - unique
+      - name: claim_id
+        tests:
+          - not_null
+
+  - name: dim_account
+    columns:
+      - name: account_sk
+        tests:
+          - not_null
+          - unique
+      - name: account_id
+        tests:
+          - not_null
+      - name: state_code
+        tests:
+          - not_null
+
+  - name: dim_policy
+    columns:
+      - name: policy_sk
+        tests:
+          - not_null
+          - unique
+      - name: policy_id
+        tests:
+          - not_null
+          - unique
+
+  - name: fct_claim_payments
+    columns:
+      - name: payment_id
+        tests:
+          - not_null
+          - unique
+      - name: policy_id
+        tests:
+          - not_null
+      - name: payment_amount
+        tests:
+          - not_null
+
+  # If you are using the macro-driven pattern (dim_insured_scd2_changes),
+  # keep tests on the SCD2 target table model that you build in dbt.
+  # If you are NOT building dim_insured_scd2_incremental as a dbt model, remove this block.
+  - name: dim_insured_scd2_incremental
+    columns:
+      - name: insured_scd2_key
+        tests:
+          - not_null
+          - unique
+      - name: insured_id
+        tests:
+          - not_null
+      - name: is_current
+        tests:
+          - not_null

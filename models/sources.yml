@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: raw_pc
+    database: dbt_cloud_snowflake_db
+    schema: raw_pc
+    tables:
+      - name: account
+      - name: policy
+      - name: insured
+      - name: claim
+      - name: claim_payment
