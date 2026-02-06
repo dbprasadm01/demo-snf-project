@@ -1,4 +1,12 @@
 {{ config(
+  materialized='table'
+) }}
+
+
+select 1 as id
+{#
+
+{{ config(
   materialized='table',
   post_hook=[
     "{{ scd2_merge_snowflake(
@@ -30,3 +38,5 @@ select
   postal_code,
   src_updated_at
 from {{ ref('stg_insured') }}
+
+#}
