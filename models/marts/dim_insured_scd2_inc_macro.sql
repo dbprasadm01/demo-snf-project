@@ -1,6 +1,5 @@
 {{ config(
   materialized='table',
-  schema='analytics',
   post_hook=[
     "{{ scd2_merge_snowflake(
         source_relation=this,
