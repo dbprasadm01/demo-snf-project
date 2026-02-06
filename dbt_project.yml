@@ -32,20 +32,23 @@ clean-targets: ["target", "dbt_packages"] # directories to be removed by `dbt cl
 models:
   pc_dbt_cloud_demo:
     staging:
+      +transient: false
       +materialized: view
-      +schema: analytics
+      +schema: "{{env_var('DBT_TARGET_SCHEMA')}}"
     marts:
+      +transient: false
       +materialized: table
-      +schema: analytics
+      +schema: "{{env_var('DBT_TARGET_SCHEMA')}}"
 
 seeds:
   pc_dbt_cloud_demo:
-    +schema: analytics
+    +transient: false
+    +schema: "{{env_var('DBT_TARGET_SCHEMA')}}"
     +quote_columns: false
 
 snapshots:
   pc_dbt_cloud_demo:
-    +target_schema: analytics
+    +target_schema: "{{env_var('DBT_TARGET_SCHEMA')}}"
     +target_database: dbt_cloud_snowflake_db
 
 vars:
