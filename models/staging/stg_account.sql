@@ -1,5 +1,4 @@
 {{ config(materialized='view') }}
-
 select
   account_id,
   account_number,
